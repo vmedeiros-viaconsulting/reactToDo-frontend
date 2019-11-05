@@ -36,6 +36,7 @@ class App extends Component {
       newItem:""
     })
   }
+
   deleteItem(id){
     //Copy current list of items
     const list = [...this.state.list];
@@ -45,39 +46,52 @@ class App extends Component {
 
     this.setState({list: updatedList});
   }
+
   render(){
     return (
-      <div className="App">
-        <div>
-          Add an Item...
-          <br />
-          <input
-            type="text"
-            placeholder="Type item here..."
-            value={this.state.newItem}
-            onChange={e => this.updateInput("newItem", e.target.value)}
-          />
-          <button
-            onClick={() => this.addItem()}
+      <div>
+        <h1 className="app-title">ToDo List</h1>
+        <div className="container">
+          <div
+            style={{
+              padding: 30,
+              textAlign: "left",
+              maxWidth: 500,
+              margin: "auto"
+            }}
           >
-            Add
-          </button>
-          <br />
-          <ul>
-            {this.state.list.map(item => {
-              return(
-                <li key={item.id}>
-                  {item.value}
-                  <button
-                    onClick={() => this.deleteItem(item.id)}
+            Add an item...
+            <br />
+            <input
+              type="text"
+              placeholder="Type item here..."
+              value={this.state.newItem}
+              onChange={e => this.updateInput("newItem", e.target.value)}
+            />
+            <button
+              className="add-btn btn-floating"
+              onClick={() => this.addItem()}
+              disabled={!this.state.newItem.length}
+            >
+              <i class="material-icons"> + </i>
+            </button>
+            <br /> <br />
+            <ul>
+              {this.state.list.map(item => {
+                return(
+                  <li key={item.id}>
+                    {item.value}
+                    <button
+                      onClick={() => this.deleteItem(item.id)}
 
-                  >
-                    X
-                  </button>
-                </li>
-              )
-            })}
-          </ul>
+                    >
+                      X
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
         </div>
       </div>
     );
