@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './App.css';
 
 class App extends Component {
   constructor(props){
@@ -106,14 +107,14 @@ class App extends Component {
           <div
             style={{
               padding: 30,
-              textAlign: "left",
+              textAlign: "center",
               maxWidth: 500,
               margin: "auto"
             }}
           >
             Add an item...
             <br />
-            <input
+            <input className="input"
               type="text"
               placeholder="Type item here..."
               value={this.state.newItem}
