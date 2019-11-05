@@ -36,6 +36,15 @@ class App extends Component {
       newItem:""
     })
   }
+  deleteItem(id){
+    //Copy current list of items
+    const list = [...this.state.list];
+
+    //Filter out item being deleted
+    const updatedList = list.filter(item => item.id !== id);
+
+    this.setState({list: updatedList});
+  }
   render(){
     return (
       <div className="App">
@@ -53,6 +62,22 @@ class App extends Component {
           >
             Add
           </button>
+          <br />
+          <ul>
+            {this.state.list.map(item => {
+              return(
+                <li key={item.id}>
+                  {item.value}
+                  <button
+                    onClick={() => this.deleteItem(item.id)}
+
+                  >
+                    X
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
         </div>
       </div>
     );
